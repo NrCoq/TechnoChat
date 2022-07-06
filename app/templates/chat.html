@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% for post in posts %}
+  <div class="post_box">
+    <div class="post_box-header">
+      <div class="post_box-options">
+          <script>
+            function reply() {
+              var divobj = document.querySelector("#divapp");
+              var f = document.createElement("form");
+              f.setAttribute('method', "post");
+              f.setAttribute('action', "/submit");
+              f.setAttribute('id', "textform");
+
+              var textbox = document.createElement("input");
+              textbox.name = "content";
+              textbox.type = "textarea";
+              textbox.name = "content";
+              textbox.placeholder = "Введите текст";
+
+              var i = document.createElement("input"); //input element, text
+              i.setAttribute('type', "text");
+              i.setAttribute('name', "author");
+              i.setAttribute('placeholder', "Ваше имя");
+
+              var s = document.createElement("input"); //input element, Submit button
+              s.setAttribute('type', "submit");
+              s.setAttribute('value', "Отправить");
+
+              f.appendChild(textbox);
+              f.appendChild(i);
+              f.appendChild(s);
+              divobj.appendChild(f);
+            }
+          </script>
+        </div>
+      </div>
+      <div style="background: rgb(100, 97, 250) none repeat scroll 0% 0%; box-shadow: rgb(0, 97, 146) 0px 0px 0px 2px;"
+        class="post_box-avatar">{{post.author[0]}}</div>
+      <div class="name-header">{{post.author}}</div>
+      <div class="post_box-subtitle"> Отправлено в <i>{{readable_time(post.timestamp)}}</i></div>
+    </div>
+    <div>
+      <div class="post_box-body">
+        <p>{{post.content}}</p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  </div>
+  {% endblock %}

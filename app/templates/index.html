@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<section id="about"  >
+  <h2 style="font-size:120px;color:white;" ><b>Techno<span style="color:tomato" >Chat</span></b></h2>
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <ul>
+    {% for message in messages %}
+    <li>{{ message }} </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  {% endwith %}
+  <div id="wrapper">
+    <form action="/submit" method="post">
+      <div id="margin"><b><span style="font-size:20px;color:white;">От</span></b>
+        <input id="title" type="text" name="author">
+      </div>
+      <textarea id="text" name="content" rows="4" cols="100" placeholder="Введите текст!"></textarea>
+      <br>
+      <input id="button" type="submit" value="Отправить" href="#about">
+    </form>
+  </div>
+  {% endblock %}
